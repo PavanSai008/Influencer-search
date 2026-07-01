@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { LandingPage } from "@/pages/LandingPage";
 import { SearchPage } from "@/pages/SearchPage";
 import { ProfileDetailPage } from "@/pages/ProfileDetailPage";
@@ -10,7 +10,7 @@ import { SavedListPage } from "@/pages/SavedListPage";
 
 function App() {
   return (
-    <BrowserRouter basename="/Influencer-search">
+    <HashRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/search" element={<SearchPage />} />
@@ -21,7 +21,7 @@ function App() {
         <Route path="/saved-list" element={<SavedListPage />} />
         <Route path="/profile/:username" element={<ProfileDetailPage />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
