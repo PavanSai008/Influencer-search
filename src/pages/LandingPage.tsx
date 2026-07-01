@@ -1,11 +1,7 @@
 ﻿import { useNavigate } from "react-router-dom";
 import {
-  ArrowRight,
   BarChart2,
   Check,
-  Clock,
-  Globe,
-  PlayCircle,
   Search,
   ShieldCheck,
   Users,
