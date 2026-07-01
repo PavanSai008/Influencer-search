@@ -65,12 +65,14 @@ export function ProfileDetailPage() {
     });
   }, [username]);
 
-  const topbar = (
+  const topbar = ({ onMenuClick }: { onMenuClick: () => void }) => (
     <Topbar
       title={username ? `@${username}` : "Profile"}
+      showHome
+      onMenuClick={onMenuClick}
       children={
         <Link
-          to="/"
+          to="/search"
           className="flex items-center gap-1.5 rounded-lg border border-border bg-secondary px-3 py-1.5 text-[13px] font-medium text-foreground"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
@@ -108,7 +110,7 @@ export function ProfileDetailPage() {
           <p className="mb-4 text-destructive-foreground">
             Could not load profile details for {username}
           </p>
-          <Link to="/" className="text-accent-foreground underline">
+          <Link to="/search" className="text-accent-foreground underline">
             Back to search
           </Link>
         </div>
@@ -184,7 +186,9 @@ export function ProfileDetailPage() {
                       <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]">
                         <div
                           className={`h-full rounded-full ${engagementFillClasses[engagementLevel]}`}
-                          style={{ width: `${Math.min(95, engagementPct * 12)}%` }}
+                          style={{
+                            width: `${Math.min(95, engagementPct * 12)}%`,
+                          }}
                         />
                       </div>
                     </div>
@@ -193,9 +197,7 @@ export function ProfileDetailPage() {
                   <div className="mt-5 flex flex-wrap items-center gap-2">
                     <button
                       type="button"
-                      onClick={() =>
-                        addProfile({ ...user, platform })
-                      }
+                      onClick={() => addProfile({ ...user, platform })}
                       disabled={isSelected}
                       className={`flex items-center gap-1.5 rounded-lg px-5 py-2.5 text-sm font-bold ${
                         isSelected

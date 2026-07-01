@@ -18,13 +18,7 @@ import {
   getScoreGrade,
   getScoreColor,
 } from "@/utils/profileMetrics";
-import {
-  Activity,
-  BarChart2,
-  Bookmark,
-  Radio,
-  Users,
-} from "lucide-react";
+import { Activity, BarChart2, Bookmark, Radio, Users } from "lucide-react";
 
 function PlatformBreakdown({
   platform,
@@ -105,7 +99,11 @@ export function AnalyticsPage() {
 
   if (selectedProfiles.length === 0) {
     return (
-      <DashboardLayout topbar={<Topbar title="Analytics" />}>
+      <DashboardLayout
+        topbar={({ onMenuClick }) => (
+          <Topbar title="Analytics" showHome onMenuClick={onMenuClick} />
+        )}
+      >
         <div className="flex flex-1 items-center justify-center px-4 py-16">
           <div className="max-w-md rounded-xl border border-dashed border-border bg-card px-8 py-12 text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15">
@@ -131,11 +129,16 @@ export function AnalyticsPage() {
   }
 
   return (
-    <DashboardLayout topbar={<Topbar title="Analytics" />}>
+    <DashboardLayout
+      topbar={({ onMenuClick }) => (
+        <Topbar title="Analytics" showHome onMenuClick={onMenuClick} />
+      )}
+    >
       <div className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 sm:px-7 sm:py-[22px]">
         <p className="mb-5 text-[13px] text-muted-foreground">
-          Combined performance across your saved list — {selectedProfiles.length}{" "}
-          creator{selectedProfiles.length === 1 ? "" : "s"} in shortlist.
+          Combined performance across your saved list —{" "}
+          {selectedProfiles.length} creator
+          {selectedProfiles.length === 1 ? "" : "s"} in shortlist.
         </p>
 
         <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">

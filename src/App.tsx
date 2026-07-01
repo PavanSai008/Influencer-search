@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { LandingPage } from "@/pages/LandingPage";
 import { SearchPage } from "@/pages/SearchPage";
 import { ProfileDetailPage } from "@/pages/ProfileDetailPage";
 import { TrendingPage } from "@/pages/TrendingPage";
@@ -11,7 +12,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SearchPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/trending" element={<TrendingPage />} />
         <Route path="/ai-suggestions" element={<AISuggestionsPage />} />
         <Route path="/active-campaigns" element={<ActiveCampaignsPage />} />

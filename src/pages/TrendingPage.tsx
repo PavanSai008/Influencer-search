@@ -8,7 +8,11 @@ export function TrendingPage() {
   const profiles = useMemo(() => getTrendingProfiles(3), []);
 
   return (
-    <DashboardLayout topbar={<Topbar title="Trending Creators" />}>
+    <DashboardLayout
+      topbar={({ onMenuClick }) => (
+        <Topbar title="Trending Creators" showHome onMenuClick={onMenuClick} />
+      )}
+    >
       <div className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 sm:px-7 sm:py-[22px]">
         <p className="mb-5 text-[13px] text-muted-foreground">
           Top 3 influencers by engagement from Instagram, YouTube, and TikTok —

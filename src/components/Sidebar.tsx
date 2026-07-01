@@ -51,22 +51,27 @@ function NavSection({ label }: { label: string }) {
   );
 }
 
-export function Sidebar() {
+interface SidebarProps {
+  className?: string;
+  mobile?: boolean;
+}
+
+export function Sidebar({ className = "", mobile = false }: SidebarProps) {
   const location = useLocation();
   const path = location.pathname;
 
   return (
     <aside
-      className="hidden w-[228px] shrink-0 flex-col border-r border-border bg-sidebar py-5 lg:flex"
+      className={`${mobile ? "flex lg:hidden" : "hidden lg:flex"} w-[228px] shrink-0 flex-col border-r border-border bg-sidebar py-5 ${className}`}
       aria-label="Main navigation"
     >
       <NavSection label="Discover" />
       <NavItem
-        to="/"
-        active={path === "/"}
+        to="/search"
+        active={path === "/search"}
         icon={
           <Search
-            className={`h-3.5 w-3.5 ${path === "/" ? "text-accent-foreground" : ""}`}
+            className={`h-3.5 w-3.5 ${path === "/search" ? "text-accent-foreground" : ""}`}
           />
         }
         label="Influencer Search"

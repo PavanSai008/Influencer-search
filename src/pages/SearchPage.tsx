@@ -43,13 +43,15 @@ export function SearchPage() {
 
   return (
     <DashboardLayout
-      topbar={
+      topbar={({ onMenuClick }) => (
         <Topbar
           title="Influencer Discovery"
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+          showHome
+          onMenuClick={onMenuClick}
         />
-      }
+      )}
     >
       <div className="flex flex-1 overflow-hidden">
         <div className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 sm:px-7 sm:py-[22px]">

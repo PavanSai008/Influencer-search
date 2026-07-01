@@ -9,7 +9,11 @@ export function SavedListPage() {
   const selectedProfiles = useSelectedProfilesStore((s) => s.selectedProfiles);
 
   return (
-    <DashboardLayout topbar={<Topbar title="Saved Lists" />}>
+    <DashboardLayout
+      topbar={({ onMenuClick }) => (
+        <Topbar title="Saved Lists" showHome onMenuClick={onMenuClick} />
+      )}
+    >
       <div className="scrollbar-thin flex-1 overflow-y-auto px-4 py-5 sm:px-7 sm:py-[22px]">
         <div className="mb-5 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>

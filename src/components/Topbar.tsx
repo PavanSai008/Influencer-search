@@ -1,10 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import type { ReactNode } from "react";
-import { Bell, Plus, Search, SlidersHorizontal } from "lucide-react";
+import {
+  Bell,
+  Home,
+  Menu,
+  Plus,
+  Search,
+  SlidersHorizontal,
+} from "lucide-react";
 
 interface TopbarProps {
   title: string;
   searchQuery?: string;
   onSearchChange?: (value: string) => void;
+  showHome?: boolean;
+  onMenuClick?: () => void;
   children?: ReactNode;
 }
 
@@ -12,11 +22,37 @@ export function Topbar({
   title,
   searchQuery = "",
   onSearchChange,
+  showHome = false,
+  onMenuClick,
   children,
 }: TopbarProps) {
+  const navigate = useNavigate();
+
   return (
     <header className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-[rgba(6,8,16,0.95)] px-4 sm:px-8">
-      <div className="flex min-w-0 items-center gap-4">
+      <div className="flex min-w-0 items-center gap-3">
+        {onMenuClick ? (
+          <button
+            type="button"
+            onClick={onMenuClick}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground sm:hidden"
+            aria-label="Open menu"
+          >
+            <Menu className="h-4 w-4" />
+          </button>
+        ) : null}
+
+        {showHome ? (
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1.5 text-[13px] font-semibold text-foreground"
+          >
+            <Home className="h-4 w-4" />
+            <span className="hidden sm:inline">Home</span>
+          </button>
+        ) : null}
+
         <h1 className="truncate text-lg font-extrabold tracking-tight text-foreground">
           {title}
         </h1>
