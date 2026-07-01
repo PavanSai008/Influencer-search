@@ -10,7 +10,7 @@ import { SavedListPage } from "@/pages/SavedListPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Influencer-search">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/search" element={<SearchPage />} />
